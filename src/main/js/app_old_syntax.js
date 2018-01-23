@@ -4,7 +4,6 @@ var ons = require('onsenui');
 var Ons = require('react-onsenui');
 var client = require('./client');
 import Home from './Home';
-import BallRoom from './BallRoom';
 import CancelRoom from './CancelRoom';
 class ReactApp extends React.Component{
   constructor() {
@@ -54,7 +53,6 @@ class ReactApp extends React.Component{
           <Ons.Page>
             <Ons.List>
               <Ons.ListItem key='home' onClick={this.loadPage.bind(this, Home)} tappable>Home</Ons.ListItem>
-              <Ons.ListItem key='ballRoom' onClick={this.loadPage.bind(this, BallRoom)} tappable>จองห้องจัดเลี้ยง</Ons.ListItem>
               <Ons.ListItem key='cancelRoom' onClick={this.loadPage.bind(this, CancelRoom)} tappable>ยกเลิกห้องพัก</Ons.ListItem>
             </Ons.List>
           </Ons.Page>

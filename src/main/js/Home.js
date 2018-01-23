@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 var ons = require('onsenui');
 var Ons = require('react-onsenui');
 var client = require('./client');
-import BallRoom from './BallRoom';
 import CancelRoom from './CancelRoom';
 import CancelBill1 from './CancelBill1';
 
@@ -20,9 +19,6 @@ export default class Home extends React.Component {
     this.props.showMenu();
   }
 
-  PageBallRoom() {
-    this.props.navigator.pushPage({ component: BallRoom, props: { key: 'ballroom' } });
-  }
 
   PageCancelRoom() {
     this.props.navigator.pushPage({ component: CancelRoom, props: { key: 'cancelRoom' } });
@@ -36,7 +32,7 @@ render() {
         <div style={{ textAlign: 'center' }}>
           <br />
 
-           <Ons.Button onClick={this.PageBallRoom.bind(this)}>จองห้องจัดเลี้ยง</Ons.Button><br /><br />
+           <Ons.Button>จองห้องจัดเลี้ยง</Ons.Button><br /><br />
            <Ons.Button>จองห้องพัก</Ons.Button><br /><br />
            <Ons.Button onClick={this.PageCancelRoom.bind(this)}>แจ้งยกเลิกห้องพัก</Ons.Button><br /><br />
            <Ons.Button>แจ้งทำความสะอาด</Ons.Button><br /><br />
