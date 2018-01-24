@@ -5,7 +5,7 @@ var Ons = require('react-onsenui');
 var client = require('./client');
 import Home from './Home';
 import CancelRoom from './CancelRoom';
-class ReactApp extends React.Component{
+class ReactApp extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -37,7 +37,7 @@ class ReactApp extends React.Component{
   }
 
 
-   renderPage(route, navigator) {
+  renderPage(route, navigator) {
     route.props = route.props || {};
     route.props.navigator = navigator;
     route.props.showMenu = this.show.bind(this);
@@ -47,7 +47,7 @@ class ReactApp extends React.Component{
 
   render() {
 
-   return (
+    return (
       <Ons.Splitter>
         <Ons.SplitterSide side='right' width={220} collapse={true} swipeable={true} isOpen={this.state.isOpen} onClose={this.hide.bind(this)} onOpen={this.show.bind(this)}>
           <Ons.Page>

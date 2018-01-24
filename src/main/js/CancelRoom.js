@@ -1,4 +1,3 @@
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var ons = require('onsenui');
@@ -6,17 +5,18 @@ var Ons = require('react-onsenui');
 var client = require('./client');
 import CancelBill from './CancelBill';
 
+let imgUrl = 'https://static1.squarespace.com/static/53b4d49de4b00894c69c7a0c/t/53f55c62e4b09b353f81ef9b/1408588898855/Pink+Watercolor+Wallpaper_Pixejoo.jpg';
 export default class CancelRoom extends React.Component {
-  constructor(){
+  constructor() {
     super()
-    this.state={
+    this.state = {
       name: '',
       idBill: ''
     }
   }
   renderToolbar() {
     return (
-      <Ons.Toolbar>
+      <Ons.Toolbar style={{ backgroundColor: '	#FF3366' }}>
         <div className='center'>Hotel - Team15</div>
         <div className='right'>
           <Ons.ToolbarButton onClick={this.showMenu.bind(this)}>
@@ -28,56 +28,72 @@ export default class CancelRoom extends React.Component {
   }
 
 
-	showMenu() {
+  showMenu() {
+
     this.props.showMenu();
   }
   CancelBill() {
-    if(this.state.idBill===''&&this.state.name===''){
-       ons.notification.alert('กรุณากรอกข้อมูลให้ครบค่ะ');
-    }else{
-      this.props.navigator.pushPage({ component: CancelBill, props: { key: 'cancelBill',state: this.state } });
+    if (this.state.idBill === '' && this.state.name === '') {
+      ons.notification.alert('กรุณากรอกข้อมูลให้ครบค่ะ');
+    } else {
+      this.props.navigator.pushPage({ component: CancelBill, props: { key: 'cancelBill', state: this.state } });
     }
   }
 
   handleNameChange(e) {
-    this.setState({name: e.target.value});
+    this.setState({ name: e.target.value });
   }
 
   handleIdBillChange(e) {
-    this.setState({idBill: e.target.value});
+    this.setState({ idBill: e.target.value });
   }
 
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-      <Ons.Card>
-      <img src={"https://amazingthaisea.com/wp-content/uploads/2014/05/1-1.jpg"} style={{width: '100%'}}  />
-        <div style={{ textAlign: 'center' }}>
-          <h1>แจ้งยกเลิกห้องพัก</h1>
+        <Ons.Card style={{ paddingLeft: '0%', backgroundImage: 'url(' + imgUrl + ')' }}>
 
-          <p>
-            <Ons.Input
-            value={this.state.name}
-            onChange={this.handleNameChange.bind(this)}
-              modifier='underbar'
-              float
-              placeholder='ชื่อ-สกุล' />
-          </p>
+          <div style={{ textAlign: 'center' }}>
+            <b><h1 style={{ size: '75%' }}>แจ้งยกเลิกห้องพัก</h1></b>
 
-          <p>
-            <Ons.Input
-            value={this.state.idBill}
-            onChange={this.handleIdBillChange.bind(this)}
-              modifier='underbar'
-              float
-              placeholder='เลขที่ใบบันทึกการจอง' />
-          </p>
+            <img src={"https://amazingthaisea.com/wp-content/uploads/2014/05/1-1.jpg"} style={{ width: '80%' }} /><br /><br />
 
-          <p>
-			  <Ons.Button onClick={this.CancelBill.bind(this, CancelBill)}>ส่งคำร้อง</Ons.Button>
-			</p>
 
-        </div>
+
+
+            <div style={{ paddingLeft: '13%' }}>
+              <Ons.Card style={{ backgroundColor: '#FFFAFA', width: '85%' }}>
+                <div style={{ paddingLeft: '-13%', textAlign: 'center' }}>
+                  <p>
+                    <Ons.Input
+                      value={this.state.name}
+                      onChange={this.handleNameChange.bind(this)}
+                      modifier='underbar'
+                      float
+                      placeholder='ชื่อ-สกุล' />
+                  </p>
+
+                  <p>
+                    <Ons.Input
+                      value={this.state.idBill}
+                      onChange={this.handleIdBillChange.bind(this)}
+                      modifier='underbar'
+                      float
+                      placeholder='เลขที่ใบบันทึกการจอง' />
+                  </p>
+
+                  <p>
+                    <Ons.Button onClick={this.CancelBill.bind(this)} style={{ backgroundColor: '	#FF3366' }}>ส่งคำร้อง</Ons.Button>
+                  </p>
+                </div>
+              </Ons.Card>
+            </div>
+
+
+
+
+
+          </div>
         </Ons.Card>
 
         <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
