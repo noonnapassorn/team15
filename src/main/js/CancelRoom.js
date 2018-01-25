@@ -34,16 +34,35 @@ export default class CancelRoom extends React.Component {
   }
   CancelBill() {
     if (this.state.idBill === '' && this.state.name === '') {
-      ons.notification.alert('กรุณากรอกข้อมูลให้ครบค่ะ');
-    } else {
-      this.props.navigator.pushPage({ component: CancelBill, props: { key: 'cancelBill', state: this.state } });
+      ons.notification.alert('กรุณากรอกข้อมูลให้ครบ');
+    }else {
+        client({method: 'GET', path: `/name/${this.state.name}/memberId/${this.state.idBill}`}).done(response => {
+      // this.setState({employees: response.entity._embedded.employees});
+         console.log(response.entity.status)
+         if(response.entity.status==="not found")
+            ons.notification.alert('ข้อมูลไม่ถูกต้อง');
+          else if("found")
+             this.props.navigator.pushPage({ component: CancelBill, props: { key: 'cancelBill', state: this.state } });
+          else
+             ons.notification.alert('server error'+response.status.code);
+    });
+      // if(this.state.idBill === '' && this.state.name === ''){
+      //   ons.notification.alert('ข้อมูลไม่ถูกต้อง');
+      // }else{
+      // this.props.navigator.pushPage({ component: CancelBill, props: { key: 'cancelBill', state: this.state } });
+      // }
     }
   }
 
   handleNameChange(e) {
     this.setState({ name: e.target.value });
   }
-
+  // componentDidMount() {
+  //   client({method: 'GET', path: '/name'}).done(response => {
+  //     // this.setState({employees: response.entity._embedded.employees});
+  //     console.log(response)
+  //   });
+  // }
   handleIdBillChange(e) {
     this.setState({ idBill: e.target.value });
   }
@@ -51,7 +70,7 @@ export default class CancelRoom extends React.Component {
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
-        <Ons.Card style={{ paddingLeft: '0%', backgroundImage: 'url(' + imgUrl + ')' }}>
+        <Ons.Card style={{  backgroundImage: 'url(' + imgUrl + ')' }}>
 
           <div style={{ textAlign: 'center' }}>
             <b><h1 style={{ size: '75%' }}>แจ้งยกเลิกห้องพัก</h1></b>
@@ -93,7 +112,7 @@ export default class CancelRoom extends React.Component {
 
 
 
-          </div>
+          </div><br /><br /><br /><br />
         </Ons.Card>
 
         <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>

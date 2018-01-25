@@ -16,13 +16,18 @@ public class MakeRentController {
      CutRoomRepository cutRoomRepository;
      @Autowired
      ReserveRepository reserveRepository;
-
      @ResponseBody
-     @RequestMapping(path = "/name/{n}/nameId/{id}/receipt/{re}/room/{r}/status/{s}", method = RequestMethod.DELETE)
-     public String cutRoom(@PathVariable String id,@PathVariable String r,@PathVariable String n,@PathVariable String re,@PathVariable String s) {
-         Reserve reserve = this.reserveRepository.findOne(re);
-         CutRoom cutRoom = new CutRoom(reserve,id,r,n,s);
-         this.cutRoomRepository.save(cutRoom);
-         return "{\"status\":\"Voted\"}";
+     @RequestMapping(path = "/name/{name}/memberId/{memberId}", method = RequestMethod.GET)
+     public String cutRoom(@PathVariable String name , @PathVariable String memberId ) {
+        Reserve res = this.reserveRepository.findByName(name);
+        Reserve idroom = this.reserveRepository.findBymemberId(memberId);
+        System.out.println(res +"  "+idroom);//ปริ้นค่าออกมาดูว่าจะรีอะไร
+        if(res!=null&&idroom!=null)//รีเทิร์นเป็นออปเจคมั้ย ถ้าไม่มันจะเป็นnull
+            return "{\"status\":\"found\"}";
+        else
+            return "{\"status\":\"not found\"}";
+         
+
      }
+
 }

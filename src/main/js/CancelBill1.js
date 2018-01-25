@@ -27,15 +27,12 @@ export default class CancelBill1 extends React.Component {
     this.props.showMenu();
   }
 
-  popPage() {
-    this.props.navigator.popPage();
-  }
 
   Home1(page) {
-    this.props.navigator.pushPage({ component: page });
+    this.props.navigator.pushPage({ component: page ,props: { key: `${page}` } });
   }
 
-
+  
   render() {
     return (
       <Ons.Page renderToolbar={this.renderToolbar.bind(this)}>
@@ -44,14 +41,17 @@ export default class CancelBill1 extends React.Component {
           <h1>แจ้งยกเลิกห้องพักเรียบร้อยแล้ว</h1>
           <h1>ระบบกำลังดำเนินการ</h1>
 
-          <img src={"http://da954e15a2c91dbf5db4-f413c3824e566fbbefc6c06114d30279.r65.cf1.rackcdn.com/XLGallery/she172gr.190380-Deluxe-River-View-Room.jpg"} style={{ width: '100%' }} />
-
+          <img src={"http://da954e15a2c91dbf5db4-f413c3824e566fbbefc6c06114d30279.r65.cf1.rackcdn.com/XLGallery/she172gr.190380-Deluxe-River-View-Room.jpg"} style={{ width: '80%' }} />
+          <br /><br /><br /><br /><br />
           <p>
-            <Ons.Button onClick={this.Home1.bind(this, Home)}style={{ backgroundColor: '	#FF3366' }}>กลับไปหน้าแรก</Ons.Button>
+            <Ons.Button onClick={this.Home1.bind(this, Home)}style={{ backgroundColor: '	#FF3366' }}>กลับไปหน้าหลัก</Ons.Button>
           </p>
 
-        </div>
+        </div><br /><br /><br /><br />
         </Ons.Card>
+        <p style={{ textAlign: 'center', opacity: '0.6', paddingTop: '20px' }}>
+          ขอบคุณที่ใช้บริการ!
+        </p>
       </Ons.Page>
     );
   }

@@ -23,4 +23,10 @@ public class Reserve {
         this.memberId = memberId;
         this.name = name;
     }
+    public String getName(){
+        return this.name;
+    }
+    public String getRoomId(){
+        return this.reserveId;
+    }
 }
