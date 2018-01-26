@@ -10,10 +10,12 @@ import org.springframework.stereotype.Component;
 public class DatabaseLoader implements CommandLineRunner {
 
 	private final ReserveRepository reserveRepository;
+    private final ReservationReceiptRepository reservationReceiptRepository;
 
     @Autowired
-    public DatabaseLoader(ReserveRepository repository) {
+    public DatabaseLoader(ReserveRepository repository,ReservationReceiptRepository reservationReceiptRepository) {
         this.reserveRepository = repository;
+		this.reservationReceiptRepository = reservationReceiptRepository;
     }
 
 
@@ -32,6 +34,8 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.reserveRepository.save(new Reserve("R11","G03","C0013","ทองยศ"));
 		this.reserveRepository.save(new Reserve("R12","G04","C0014","กลุ่ม9"));
 		this.reserveRepository.save(new Reserve("R13","G05","C0015","ห้องซ้อมดนตรี"));
+// String billid,String name,String nameroom,String roomnumber,String date,Double price
+	    this.reservationReceiptRepository.save(new ReservationReceipt("noon","Noon","Delux","A04","2018-01-26",123.00));
 	}
 }
 
